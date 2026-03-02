@@ -5,9 +5,9 @@ public class DeviceRegistry {
 
     public void add(SmartClassroomDevice d) { devices.add(d); }
 
-    public SmartClassroomDevice getFirstOfType(String simpleName) {
+    public <T> T getFirstOfType(String simpleName, Class<T> type) {
         for (SmartClassroomDevice d : devices) {
-            if (d.getClass().getSimpleName().equals(simpleName)) return d;
+            if (d.getClass().getSimpleName().equals(simpleName)) return type.cast(d);
         }
         throw new IllegalStateException("Missing: " + simpleName);
     }
